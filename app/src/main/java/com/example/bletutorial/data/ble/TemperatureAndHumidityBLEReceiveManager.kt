@@ -130,13 +130,13 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
 
         override fun onCharacteristicChanged(
             gatt: BluetoothGatt?,
-            characteristic: BluetoothGattCharacteristic?
+            characteristic: BluetoothGattCharacteristic
         ) {
             with(characteristic) {
                 when(uuid) {
                     UUID.fromString(TEMP_HUMIDITY_CHARACTERISTIC_UUID) -> {
                         // XX XX XX XX XX
-                        val multiplicator = if(this?.value?.first()?.toInt()!! > 0) -1 else 1
+                        val multiplicator = if(value.first().toInt() > 0) -1 else 1
                         val temperature = value[1].toInt() + value[2].toInt() / 10F
                         val humidity = value[4].toInt() + value[5].toInt() / 10F
                         val tempHumidityResult = TempHumidityResult(
