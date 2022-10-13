@@ -33,8 +33,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
     private val TEMP_HUMIDITY_SERVICE_UUID = "0000aa20-0000-1000-8000-00805f9b34fb"
     private val TEMP_HUMIDITY_CHARACTERISTIC_UUID = "0000aa21-0000-1000-8000-00805f9b34fb"
 
-    override val data: MutableSharedFlow<Resource<TempHumidityResult>>
-        get() = MutableSharedFlow()
+    override val data: MutableSharedFlow<Resource<TempHumidityResult>> = MutableSharedFlow()
 
     private val bleScanner by lazy {
         bluetoothAdapter.bluetoothLeScanner
@@ -154,6 +153,13 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
                 }
             }
         }
+
+    }
+
+    private fun example() {
+
+        val characteristic = gatt?.getService(UUID.fromString("dsfadsfh"))?.getCharacteristic(UUID.fromString("hjhbdfa"))
+        gatt?.readCharacteristic(characteristic)
     }
 
     private fun enableNotification(characteristic: BluetoothGattCharacteristic) {
