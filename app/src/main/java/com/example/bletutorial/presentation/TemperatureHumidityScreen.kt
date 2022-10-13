@@ -121,7 +121,10 @@ fun TemperatureHumidityScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = viewModel.errorMessage!!
+                        text = viewModel.errorMessage!!,
+                        style = MaterialTheme.typography.body2,
+                        modifier = Modifier.padding(10.dp),
+                        textAlign = TextAlign.Center
                     )
 
                     Button(
